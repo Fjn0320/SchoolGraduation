@@ -1,0 +1,135 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "暮光订餐"
+			}
+		},
+		{
+			"path" : "pages/orders/orders",
+			"style" : 
+			{
+				"navigationBarTitleText" : "订单",
+				//不允许下拉刷新
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/me/me",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/login/login",
+			"style" : 
+			{
+				"navigationBarTitleText" : "登 录",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/register/register",
+			"style" : 
+			{
+				"navigationBarTitleText" : "注 册",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/detail/detail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "商家详情",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/comfirm/comfirm",
+			"style" : 
+			{
+				"navigationBarTitleText" : "确认订单",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/orderComment/orderComment",
+			"style" : 
+			{
+				"navigationBarTitleText" : "订单备注",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/address/address",
+			"style" : 
+			{
+				"navigationBarTitleText" : "收货地址",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/addAdress/addAdress",
+			"style" : 
+			{
+				"navigationBarTitleText" : "添加地址",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/pinjia/pinjia",
+			"style" : 
+			{
+				"navigationBarTitleText" : "评价",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/info/info",
+			"style" : 
+			{
+				"navigationBarTitleText" : "个人",
+				"enablePullDownRefresh" : false
+			}
+		}
+		
+		
+	
+	
+	],
+	"globalStyle": {
+		//导航栏标题颜色及状态栏前景颜色，仅支持 black/white
+		"navigationBarTextStyle": "black",
+		//导航栏标题文字内容
+		"navigationBarTitleText": "暮光订餐",
+		//导航栏背景颜色
+		"navigationBarBackgroundColor": "#ffd100",
+		//下拉显示出来的窗口的背景色
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"backgroundColor": "#fff",
+		"selectedColor": "#fdd100",
+		"color": "#666",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/icon/home.png",
+				"selectedIconPath": "static/icon/home_yellow.png",
+				"text": "首页"
+			}, {
+				"pagePath": "pages/orders/orders",
+				"iconPath": "static/icon/solution.png",
+				"selectedIconPath": "static/icon/solution_yellow.png",
+				"text": "订单"
+			}, {
+				"pagePath": "pages/me/me",
+				"iconPath": "static/icon/user.png",
+				"selectedIconPath": "static/icon/user_yellow.png",
+				"text": "我的"
+			}]
+	},
+	"uniIdRouter": {}
+}

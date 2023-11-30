@@ -1,0 +1,25 @@
+
+.categroy-sort{
+	background-color: #ffd100;
+	color: orange;
+	border-left: 5rpx solid orange;
+}
+.categroy-item{
+	padding: 15rpx;
+	background-color: #eee;
+}
+.min-button{
+	border: 2rpx solid orangered;
+	padding: 0 4rpx;
+	font-size: 22rpx;
+	color: orangered; 
+	border-radius: 5rpx;
+	font-weight: bold;
+}
+.min-btn-fill{
+	background-color: orange;
+	padding: 0 4rpx;color: #fff; 
+	font-size: 24rpx;
+	border-radius: 5rpx;
+}
+
