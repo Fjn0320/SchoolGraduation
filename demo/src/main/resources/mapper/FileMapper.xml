@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.FileMapper">
+
+    <insert id="insert" parameterType="com.example.demo.pojo.FilePojo">
+        insert into sys_file(name,type,size,url,md5)
+        values (#{name},#{type},#{size},#{url},#{md5})
+    </insert>
+    <update id="update" parameterType="com.example.demo.pojo.FilePojo" >
+        update sys_file
+        set enable = #{enable}
+        where id = #{id}
+    </update>
+    <delete id="deleteFile" parameterType="Integer">
+        delete from sys_file
+        where id = #{id}
+    </delete>
+    <delete id="fileAllDelete" parameterType="list">
+        delete from sys_file
+        <where>
+            id in
+            <foreach collection="list" open="(" close=")" separator="," item="id" >
+                #{id}
+            </foreach>
+        </where>
+    </delete>
+    <select id="selectMD5" resultType="com.example.demo.pojo.FilePojo">
+        select *
+        from sys_file
+        where md5 = #{md5}
+    </select>
+    <select id="getPageAllFile" resultType="com.example.demo.pojo.FilePojo">
+        select *
+        from sys_file
+        <where>
+            <if test="name!=null and name != ''">
+                name like concat('%',#{name},'%')
+            </if>
+        </where>
+            limit #{pageNum},#{pageSize}
+    </select>
+    <select id="getFileSum" resultType="java.lang.Integer">
+        select count(*)
+        from sys_file
+        <where>
+            <if test="name != null and name != ''">
+                name like concat('%',#{name},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

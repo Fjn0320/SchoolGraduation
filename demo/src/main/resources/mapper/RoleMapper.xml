@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.RoleMapper">
+    <update id="setRoleMenu" parameterType="com.example.demo.pojo.RoleMenuPojo">
+        update sys_role_menu
+        set roleid = #{roleId},menuid = #{menuIds}
+    </update>
+    <select id="selectRoleFlag">
+        select id from sys_role where flag = #{flag}
+    </select>
+    <select id="getPageAllUser" resultType="com.example.demo.pojo.RolePojo" parameterType="Integer">
+        select *
+        from sys_role
+        <where>
+            <if test="name !=null and name!=''">
+                name like concat('%',#{name},'%')
+            </if>
+        </where>
+        limit #{pageNum},#{pageSize}
+    </select>
+
+    <select id="selectUserNum" parameterType="String">
+        select count(*)
+        from sys_role
+        <where>
+            <if test="name !=null and name!=''">
+                name like concat('%',#{name},'%')
+            </if>
+        </where>
+    </select>
+    <select id="getRole" resultType="com.example.demo.pojo.RolePojo">
+        select *
+        from sys_role
+    </select>
+
+
+</mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.UserLoginMapper">
+    <insert id="userRegister" parameterType="com.example.demo.pojo.UserPojo">
+        insert into sys_user(username,password,nickname,uniname,email,phone,address,imgurl)
+        values(#{username},#{password},#{nickname},#{uniname},#{email},#{phone},#{address},#{imgurl})
+    </insert>
+
+    <select id="userSelectLogin" resultType="com.example.demo.pojo.UserPojo">
+        select * from sys_user where username = #{username}
+    </select>
+    <select id="userSelectRegister" resultType="com.example.demo.pojo.UserPojo">
+        select * from sys_user where username = #{username}
+    </select>
+</mapper>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.SortMapper">
+    <delete id="sortDelete" parameterType="Integer">
+        delete from sys_shopsort
+        where id = #{id}
+    </delete>
+
+
+    <select id="getPageAllSort" resultType="com.example.demo.pojo.ShopSortPojo">
+        select *
+        from sys_shopsort
+        <where>
+            <if test="shoping !=null and shoping!=''">
+                shoping like concat('%',#{shoping},'%')
+            </if>
+        </where>
+        limit #{pageNum},#{pageSize}
+    </select>
+    <select id="selectSortNum" resultType="java.lang.Integer" >
+        select count(*)
+        from sys_shopsort
+        <where>
+            <if test="shoping !=null and shoping!=''">
+                shoping like concat('%',#{shoping},'%')
+            </if>
+        </where>
+    </select>
+    <select id="getPageAllInfo" resultType="com.example.demo.pojo.ShopInfoPojo">
+        select *
+        from sys_shopinfo
+        <where>
+            <if test="shoping !=null and shoping!=''">
+                shoping like concat('%',#{shoping},'%')
+            </if>
+        </where>
+        limit #{pageNum},#{pageSize}
+    </select>
+    <select id="selectInfoNum" resultType="java.lang.Integer">
+        select count(*)
+        from sys_shopinfo
+        <where>
+            <if test="shoping !=null and shoping!=''">
+                shoping like concat('%',#{shoping},'%')
+            </if>
+
+        </where>
+    </select>
+</mapper>

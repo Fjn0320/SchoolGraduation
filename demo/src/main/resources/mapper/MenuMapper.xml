@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.MenuMapper">
+    <insert id="insertMenu" parameterType="com.example.demo.pojo.MenuPojo">
+        insert into sys_menu(name,path,description,pid,pagepath)
+        values(#{name},#{path},#{description},#{pid},#{pagepath})
+    </insert>
+    <update id="updateMenu" parameterType="com.example.demo.pojo.MenuPojo">
+        update sys_menu set name = #{name},path = #{path},description = #{description},pid = #{pid},pagepath = #{pagepath} where id = #{id}
+    </update>
+    <select id="getPageAllMenu" resultType="com.example.demo.pojo.MenuPojo" parameterType="Integer">
+        select *
+        from sys_menu
+        <where>
+            <if test="name !=null and name!=''">
+                name like concat('%',#{name},'%')
+            </if>
+        </where>
+        limit #{pageNum},#{pageSize}
+    </select>
+
+    <select id="selectMenuNum" parameterType="String">
+        select count(*)
+        from sys_menu
+        <where>
+            <if test="name !=null and name!=''">
+                name like concat('%',#{name},'%')
+            </if>
+        </where>
+    </select>
+    <select id="getAllMenu" resultType="com.example.demo.pojo.MenuPojo">
+        select *
+        from sys_menu
+
+    </select>
+
+
+</mapper>

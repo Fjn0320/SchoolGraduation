@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.CartMapper">
+
+
+    <insert id="add" parameterType="com.example.demo.pojo.ShopCartPojo">
+        insert into sys_cart(shopid,num,userid,businessid)
+        values (#{shopid},#{num},#{userid},#{businessid})
+    </insert>
+    <update id="updateCart" parameterType="com.example.demo.pojo.ShopCartPojo">
+        update sys_cart
+        set shopid = #{shopid},num = #{num},userid=#{userid},businessid = #{businessid} where id =#{id}
+    </update>
+    <delete id="deleteCart" parameterType="Integer">
+        delete from sys_cart
+        where userid = #{userid} and businessid = #{businessid}
+    </delete>
+    <select id="selectAllCart" resultType="com.example.demo.pojo.ShopCartPojo">
+        select *
+        from sys_cart
+        where userid = #{userid} and businessid = #{businessid}
+    </select>
+</mapper>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.PingFenMapper">
+    <delete id="pingDelete" parameterType="Integer">
+        delete from sys_pingfen
+        where id = #{id}
+    </delete>
+
+
+    <select id="getPageAllPing" resultType="com.example.demo.pojo.ShopPingFen">
+        select *
+        from sys_pingfen
+        <where>
+            <if test="shopname !=null and shopname!=''">
+                shopname like concat('%',#{shopname},'%')
+            </if>
+        </where>
+        limit #{pageNum},#{pageSize}
+    </select>
+    <select id="selectPingNum" resultType="java.lang.Integer" >
+        select count(*)
+        from sys_pingfen
+        <where>
+            <if test="shopname !=null and shopname!=''">
+                shopname like concat('%',#{shopname},'%')
+            </if>
+        </where>
+    </select>
+    <select id="getPageAllPingShop" resultType="com.example.demo.pojo.ShopPingFen">
+        select *
+        from sys_pingfen
+        <where>
+            <if test="goname !=null and goname!=''">
+                goname like concat('%',#{goname},'%')
+            </if>
+            and shopname = #{shopping}
+        </where>
+        limit #{pageNum},#{pageSize}
+    </select>
+    <select id="selectPingShopNum" resultType="java.lang.Integer">
+        select count(*)
+        from sys_pingfen
+        <where>
+            <if test="goname !=null and goname!=''">
+                goname like concat('%',#{goname},'%')
+            </if>
+            and shopname = #{shopping}
+        </where>
+    </select>
+    <select id="getShoping" resultType="java.lang.String">
+        select distinct shopping from sys_shop where username = #{username}
+    </select>
+</mapper>

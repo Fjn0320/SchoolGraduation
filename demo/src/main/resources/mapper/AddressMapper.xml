@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.AddressMapper">
+
+
+    <insert id="add" parameterType="com.example.demo.pojo.AddressPojo">
+        insert into sys_address(address,user,phone,userid)
+        values (#{address},#{user},#{phone},#{userid})
+    </insert>
+    <update id="updateAddress" parameterType="com.example.demo.pojo.AddressPojo">
+        update sys_address
+        set address = #{address},user = #{user},phone = #{phone} where id = #{id}
+    </update>
+    <delete id="deleteAddress">
+        delete from sys_address where id = #{id}
+    </delete>
+    <select id="selectAll" resultType="com.example.demo.pojo.AddressPojo">
+        select * from sys_address where userid = #{userid}
+    </select>
+    <select id="selectById" resultType="com.example.demo.pojo.AddressPojo">
+        select * from sys_address where id = #{id}
+    </select>
+</mapper>

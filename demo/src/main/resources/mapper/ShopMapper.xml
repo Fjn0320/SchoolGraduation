@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.ShopMapper">
+    <select id="getPageAllShop" resultType="com.example.demo.pojo.ShopPojo" >
+        select *
+        from sys_shop
+        <where>
+            <if test="shopname !=null and shopname!=''">
+                shopname like concat('%',#{shopname},'%')
+            </if>
+            and username= #{username}
+        </where>
+        limit #{pageNum},#{pageSize}
+    </select>
+
+     <insert id="insertShop" parameterType="com.example.demo.pojo.ShopPojo">
+        insert into sys_shop(username,shopname,shopprice,shopurl,shopping,shopsort)
+        values(#{username},#{shopname},#{shopprice},#{shopurl},#{shopping},#{shopsort})
+    </insert>
+    <insert id="saveBatch" parameterType="com.example.demo.pojo.UserPojo">
+        insert into sys_user(username,password,nickname,uniname,email,phone,address,imgurl,ctime)
+        values(#{username},#{password},#{nickname},#{uniname},#{email},#{phone},#{address},#{imgurl},#{ctime})
+    </insert>
+    <insert id="addShopDingDan" parameterType="com.example.demo.pojo.ShopDingDan" >
+        insert into sys_dingdan(shopid,shopname,shoping,goadress,gophone,goname,shopmoney,shopcomment)
+        values(#{shopid},#{shopname},#{shoping},#{goadress},#{gophone},#{goname},#{shopmoney},#{shopcomment})
+    </insert>
+    <insert id="addDingDanItem" parameterType="com.example.demo.pojo.DingDanItem">
+        insert into sys_dingitem(shopname,shopurl,shopmoney,dingdanid,shopid,userid,sum,shoping)
+        values(#{shopname},#{shopurl},#{shopmoney},#{dingdanid},#{shopid},#{userid},#{sum},#{shoping})
+    </insert>
+    <insert id="addPingFen" parameterType="com.example.demo.pojo.ShopPingFen">
+        insert into sys_pingfen(comment,goname,shopname,shopid,dingdanid)
+        values (#{comment},#{goname},#{shopname},#{shopid},#{dingdanid})
+    </insert>
+
+
+    <update id="updateShop" parameterType="com.example.demo.pojo.ShopPojo">
+        update sys_shop
+        <set>
+            <if test="shopname != null and shopname!= ''" >
+                shopname = #{shopname},
+            </if>
+            <if test="shopprice != null and shopprice!= ''" >
+                shopprice = #{shopprice},
+            </if>
+            <if test="shopurl != null and shopurl!= ''" >
+                shopurl = #{shopurl},
+            </if>
+            <if test="shopsort != null and shopsort!= ''" >
+                shopsort = #{shopsort},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <delete id="deleteShop" parameterType="Integer">
+        delete from sys_shop
+        where id = #{id}
+    </delete>
+
+    <select id="selectShopNum" parameterType="String">
+        select count(*)
+        from sys_shop
+        <where>
+            <if test="shopname !=null and shopname!=''">
+                shopname like concat('%',#{shopname},'%')
+            </if>
+            and username= #{username}
+        </where>
+    </select>
+
+<!--    deleteAllUser-->
+    <delete id="deleteAllUser" parameterType="List">
+        delete from sys_user
+        <where>
+             id in
+            <foreach collection="list" open="(" close=")" separator="," item="id" >
+                #{id}
+            </foreach>
+        </where>
+
+    </delete>
+
+    <select id="getShopInfo" resultType="com.example.demo.pojo.ShopInfoPojo">
+        select * from sys_shopinfo
+    </select>
+    <select id="selectById" resultType="java.lang.String">
+        select username from sys_shopinfo where id=#{id}
+    </select>
+    <select id="getShopMenu" resultType="com.example.demo.pojo.ShopPojo">
+        select * from sys_shop where username = #{username}
+    </select>
+    <select id="getShopInfoId" resultType="com.example.demo.pojo.ShopInfoPojo">
+        select * from sys_shopinfo where id = #{id}
+    </select>
+    <select id="getShopSort" resultType="com.example.demo.pojo.ShopSortPojo">
+        select * FROM sys_shopsort WHERE username = #{username}
+    </select>
+    <select id="getAllMenu" resultType="com.example.demo.pojo.ShopPojo">
+        select * FROM sys_shop WHERE username = #{username} AND shopsort=#{shopsort}
+    </select>
+    <select id="getShopSortId" resultType="com.example.demo.pojo.ShopSortPojo">
+        select * from sys_shopsort where id=#{id}
+    </select>
+    <select id="selectAllById" resultType="com.example.demo.pojo.ShopPojo">
+        select * from sys_shop where id=#{shopid}
+    </select>
+    <select id="getDingItem" resultType="com.example.demo.pojo.DingDanItem">
+        select *
+        from sys_dingitem
+        where userid = #{userid}
+    </select>
+    <select id="getById" resultType="com.example.demo.pojo.DingDanItem">
+        select * from sys_dingitem where id=#{id}
+    </select>
+    <select id="selectCartById" resultType="com.example.demo.pojo.UserPojo">
+        select * from sys_user where id=#{id}
+    </select>
+
+</mapper>
